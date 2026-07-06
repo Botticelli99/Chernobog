@@ -1,0 +1,373 @@
+/*
+  Black Sun Archive — Chernobog
+  =================================
+  Ce fichier gère toute l'apparence du site.
+
+  Zones utiles à modifier :
+  - .archive-plus.personality-plus : position du bouton [+] Personnalité
+  - .archive-plus.vision-plus      : position du bouton [+] Vision du monde
+  - .archive-sheet                 : position/taille de la fiche d'archive
+  - .music-player                  : position du lecteur audio
+*/
+
+:root{
+    --ink-black:#0d0b0a;
+    --parchment:#cdc4b2;
+    --parchment-dim:#8f8676;
+    --blood-bright:#a3202c;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    height:100%;
+    background:var(--ink-black);
+    color:var(--parchment);
+    font-family:'EB Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body{
+    display:flex;
+    min-height:100vh;
+    overflow-x:hidden;
+    justify-content:center;
+  }
+
+  /* ============ LEFT PANEL — Black Sun Archive (336:1024) ============ */
+  .left{
+    position:relative;
+    flex:0 0 auto;
+    height:100vh;
+    aspect-ratio:336 / 1024;
+  }
+  .left-fixed{
+    position:fixed;
+    top:0;
+    height:100vh;
+    aspect-ratio:336 / 1024;
+    overflow:hidden;
+    box-shadow:18px 0 40px rgba(0,0,0,0.5);
+    z-index:2;
+  }
+  .left-fixed img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+  }
+
+  /* ============ RIGHT PANEL — Chernobog dossier (784:1024) ============ */
+  .right{
+    position:relative;
+    flex:0 0 auto;
+    height:100vh;
+    aspect-ratio:784 / 1024;
+  }
+  .right-fixed{
+    position:fixed;
+    top:0;
+    height:100vh;
+    aspect-ratio:784 / 1024;
+    overflow:hidden;
+    z-index:1;
+  }
+  .right-fixed img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+  }
+
+
+
+  /* ============ CENTER PANEL — Chernobog illustration ============ */
+  .middle{
+    position:relative;
+    flex:0 0 auto;
+    height:100vh;
+    aspect-ratio:360 / 1024;
+  }
+
+  .middle-fixed{
+    position:fixed;
+    top:0;
+    height:100vh;
+    aspect-ratio:360 / 1024;
+    overflow:hidden;
+    z-index:3;
+    box-shadow:0 0 42px rgba(0,0,0,0.72);
+  }
+
+  .middle-fixed img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
+    display:block;
+    filter:contrast(1.04) saturate(.9) brightness(.88);
+  }
+
+
+  .left-menu{
+    position:absolute;
+    left:22%;
+    top:28%;
+    display:flex;
+    flex-direction:column;
+    gap:2.05vh;
+    z-index:5;
+    font-family:'Cinzel', serif;
+    text-transform:uppercase;
+    letter-spacing:.055em;
+  }
+
+  .left-menu a{
+    position:relative;
+    color:#282421;
+    text-decoration:none;
+    font-size:clamp(12px, 1.55vh, 18px);
+    font-weight:600;
+    transition:color .2s ease, transform .2s ease;
+  }
+
+  .left-menu a::before{
+    content:"✥";
+    position:absolute;
+    left:-1.65rem;
+    color:#7d1820;
+    opacity:0;
+    transform:scale(.8);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+
+  .left-menu a:hover,
+  .left-menu a.active{
+    color:#7d1820;
+    transform:translateX(4px);
+  }
+
+  .left-menu a:hover::before,
+  .left-menu a.active::before{
+    opacity:1;
+    transform:scale(1);
+  }
+
+
+  /* ============ RIGHT IMAGE SPA ============ */
+  #right-page-image{
+    transition:
+      opacity .32s ease,
+      filter .32s ease,
+      transform .32s ease;
+    transform:scale(1);
+  }
+
+  #right-page-image.is-changing{
+    opacity:.12;
+    filter:blur(2px);
+    transform:scale(1.012);
+  }
+
+  .music-player{
+    position:fixed;
+    right:24px;
+    bottom:22px;
+    z-index:9999;
+    width:320px;
+    padding:.65rem;
+    background:rgba(12,9,8,.82);
+    border:1px solid rgba(163,32,44,.42);
+    box-shadow:0 0 28px rgba(0,0,0,.55);
+  }
+
+  .music-player audio{
+    width:100%;
+    display:block;
+  }
+
+  @media (max-width:880px){
+    .music-player{
+      left:50%;
+      right:auto;
+      transform:translateX(-50%);
+      width:min(90vw, 340px);
+    }
+  }
+
+
+
+  /* ============ BOUTONS [+] + FICHE D'ARCHIVE — PERSONNALITÉ ============ */
+  .archive-plus{
+    position:fixed;
+    z-index:28;
+    display:none;
+
+    width:34px;
+    height:24px;
+
+    align-items:center;
+    justify-content:center;
+
+    font-family:'Cinzel', serif;
+    font-size:13px;
+    letter-spacing:.04em;
+
+    color:#291f1b;
+    background:rgba(230,222,207,.56);
+    border:1px solid rgba(85,64,55,.45);
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+
+    cursor:pointer;
+    transition:
+      color .18s ease,
+      border-color .18s ease,
+      background .18s ease,
+      transform .18s ease;
+  }
+
+  body.personnalite-active .archive-plus{
+    display:flex;
+  }
+
+  .archive-plus:hover{
+    color:#7d1820;
+    border-color:rgba(125,24,32,.72);
+    background:rgba(238,230,214,.82);
+    transform:translateY(-1px);
+  }
+
+  .archive-plus.personality-plus{
+    left:calc(50% + 12.0vw);
+    top:43.6vh;
+  }
+
+  .archive-plus.vision-plus{
+    left:calc(50% + 12.0vw);
+    top:79.3vh;
+  }
+
+  .archive-sheet{
+    position:fixed;
+    z-index:45;
+
+    right:3.4vw;
+    top:16vh;
+
+    width:min(35vw, 560px);
+    max-height:70vh;
+    overflow:auto;
+
+    padding:2rem 2.15rem;
+
+    color:#251d18;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.45), transparent 34%),
+      linear-gradient(180deg, rgba(235,228,214,.97), rgba(210,199,180,.97));
+    border:1px solid rgba(87,61,50,.52);
+    box-shadow:
+      0 28px 70px rgba(0,0,0,.48),
+      inset 0 0 34px rgba(72,48,36,.10);
+
+    transform:translateX(118%) rotate(.4deg);
+    opacity:0;
+    pointer-events:none;
+
+    transition:
+      transform .34s ease,
+      opacity .26s ease;
+  }
+
+  .archive-sheet.open{
+    transform:translateX(0) rotate(.4deg);
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .archive-sheet::before,
+  .archive-sheet::after{
+    content:"";
+    position:absolute;
+    left:1.25rem;
+    right:1.25rem;
+    height:1px;
+    background:rgba(94,70,59,.35);
+  }
+
+  .archive-sheet::before{ top:1.05rem; }
+  .archive-sheet::after{ bottom:1.05rem; }
+
+  .archive-close{
+    position:absolute;
+    top:.85rem;
+    right:1rem;
+
+    border:none;
+    background:transparent;
+    color:#7d1820;
+    cursor:pointer;
+
+    font-size:26px;
+    line-height:1;
+  }
+
+  .archive-kicker{
+    font-family:'Cinzel', serif;
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-size:11px;
+    color:#6f5b50;
+    margin-bottom:.45rem;
+  }
+
+  .archive-sheet h3{
+    font-family:'Cinzel', serif;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:clamp(20px, 1.8vw, 30px);
+    color:#16100d;
+    margin:0 2rem 1rem 0;
+  }
+
+  .archive-sheet p{
+    font-size:clamp(15px, 1.05vw, 18px);
+    line-height:1.58;
+    margin-bottom:1rem;
+  }
+
+  @media (max-width:880px){
+    .archive-plus{
+      display:none !important;
+    }
+
+    .archive-sheet{
+      width:min(90vw, 560px);
+      right:5vw;
+      top:12vh;
+    }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 880px){
+    body{
+      flex-direction:column;
+      align-items:center;
+    }
+    .left, .middle, .right{
+      height:auto;
+      width:min(84vw, 380px);
+    }
+    .left{ order:-1; }
+    .left-fixed, .middle-fixed, .right-fixed{
+      position:relative;
+      top:auto;
+      width:100%;
+      height:auto;
+    }
+    .left-fixed, .middle-fixed{
+      margin-bottom:1.4rem;
+      box-shadow:0 18px 40px rgba(0,0,0,0.5);
+    }
+  }
