@@ -200,54 +200,118 @@
 
 
   /* ============ BOUTONS [+] + FICHE D'ARCHIVE — PERSONNALITÉ ============ */
-  .archive-plus{
-    position:fixed;
-    z-index:28;
-    display:none;
+ .archive-plus{
+  position:fixed;
+  z-index:28;
+  display:none;
 
-    width:34px;
-    height:24px;
+  min-width:92px;
+  height:30px;
+  padding:0 12px;
 
-    align-items:center;
-    justify-content:center;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
 
-    font-family:'Cinzel', serif;
-    font-size:13px;
-    letter-spacing:.04em;
+  font-family:'Cinzel', serif;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 
-    color:#291f1b;
-    background:rgba(230,222,207,.56);
-    border:1px solid rgba(85,64,55,.45);
-    box-shadow:0 6px 16px rgba(0,0,0,.12);
+  color:#392723;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(244,238,226,.78),
+      rgba(214,202,184,.66)
+    );
 
-    cursor:pointer;
-    transition:
-      color .18s ease,
-      border-color .18s ease,
-      background .18s ease,
-      transform .18s ease;
-  }
+  border:1px solid rgba(99,61,54,.48);
 
-  body.personnalite-active .archive-plus{
-    display:flex;
-  }
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.12),
+    inset 0 1px rgba(255,255,255,.48);
 
-  .archive-plus:hover{
-    color:#7d1820;
-    border-color:rgba(125,24,32,.72);
-    background:rgba(238,230,214,.82);
-    transform:translateY(-1px);
-  }
+  cursor:pointer;
 
-  .archive-plus.personality-plus{
-    left:calc(50% + 12.0vw);
-    top:43.6vh;
-  }
+  transition:
+    color .2s ease,
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
 
-  .archive-plus.vision-plus{
-    left:calc(50% + 12.0vw);
-    top:79.3vh;
-  }
+body.personnalite-active .archive-plus{
+  display:flex;
+}
+
+.archive-plus::before,
+.archive-plus::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:13px;
+  height:1px;
+  background:rgba(116,33,38,.55);
+}
+
+.archive-plus::before{
+  left:-14px;
+}
+
+.archive-plus::after{
+  right:-14px;
+}
+
+.archive-plus-label{
+  line-height:1;
+}
+
+.archive-plus-symbol{
+  color:#7d1820;
+  font-size:8px;
+  transition:transform .2s ease;
+}
+
+.archive-plus:hover{
+  color:#741b22;
+  border-color:rgba(125,24,32,.75);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(248,241,227,.94),
+      rgba(222,207,186,.84)
+    );
+
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.16),
+    0 0 12px rgba(125,24,32,.08),
+    inset 0 1px rgba(255,255,255,.65);
+
+  transform:translateY(-1px);
+}
+
+.archive-plus:hover .archive-plus-symbol{
+  transform:rotate(45deg);
+}
+
+.archive-plus:focus-visible{
+  outline:1px solid #7d1820;
+  outline-offset:3px;
+}
+
+.archive-plus.personality-plus{
+  left:calc(50% + 10.4vw);
+  top:43.6vh;
+}
+
+.archive-plus.vision-plus{
+  left:calc(50% + 10.4vw);
+  top:79.3vh;
+}
 
   .archive-sheet{
     position:fixed;
