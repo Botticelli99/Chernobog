@@ -304,12 +304,12 @@ body.personnalite-active .archive-plus{
 }
 
 .archive-plus.personality-plus{
-  left:calc(50% + 10.4vw);
+  left:calc(50% + 7vw);
   top:43.6vh;
 }
 
 .archive-plus.vision-plus{
-  left:calc(50% + 10.4vw);
+  left:calc(50% + 7vw);
   top:79.3vh;
 }
 
